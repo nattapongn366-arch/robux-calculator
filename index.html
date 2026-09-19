@@ -9,6 +9,15 @@
     * {
       box-sizing: border-box;
       font-family: Arial, sans-serif;
+      .reset-btn {
+  margin-top: 10px;
+  background: #ddd;
+  color: #222;
+}
+
+.reset-btn:hover {
+  background: #ccc;
+}
     }
 
     body {
@@ -26,7 +35,7 @@
       background: white;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(250, 47, 47, 0.9372549019607843);
     }
 
     h1 {
@@ -62,7 +71,7 @@
       border: none;
       border-radius: 8px;
       background: #e691e4;
-      color: white;
+      color: hwb(0 100% 0%);
       font-size: 16px;
       cursor: pointer;
     }
@@ -85,6 +94,15 @@
       font-weight: bold;
       margin-top: 8px;
     }
+    .reset-btn {
+  margin-top: 10px;
+  background: #e53935;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #c62828;
+}
   </style>
 </head>
 
@@ -107,37 +125,48 @@
     >
 
     <button onclick="calculate()">
-      คำนวณราคา
-    </button>
+  คำนวณราคา
+</button>
+<button onclick="resetCalculator()" class="reset-btn">
+  รีเซ็ต
+</button>
 
     <div class="result" id="result">
-      <div>ราคาทั้งหมด</div>
+      <div>ราคาที่ต้องจ่าย</div>
       <div class="price" id="price">0 บาท</div>
     </div>
   </div>
 
   <script>
-    function calculate() {
-      const robux = Number(document.getElementById("robux").value);
-      const result = document.getElementById("result");
-      const price = document.getElementById("price");
+  function calculate() {
+    const robux = Number(document.getElementById("robux").value);
+    const result = document.getElementById("result");
+    const price = document.getElementById("price");
 
-      if (!robux || robux <= 0) {
-        alert("กรุณากรอกจำนวน Robux");
-        return;
-      }
-
-      const total = robux * 0.40;
-
-      price.textContent =
-        total.toLocaleString("th-TH", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }) + " บาท";
-
-      result.style.display = "block";
+    if (!robux || robux <= 0) {
+      alert("กรุณากรอกจำนวน Robux");
+      return;
     }
-  </script>
 
-</body>
-</html>
+    const total = robux * 0.50;
+
+    price.textContent =
+      total.toLocaleString("th-TH", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + " บาท";
+
+    result.style.display = "block";
+  }
+
+  function resetCalculator() {
+    document.getElementById("robux").value = "";
+    document.getElementById("price").textContent = "0 บาท";
+    document.getElementById("result").style.display = "none";
+  }
+  </script>
+  
+  </body>
+  </html>
+ 
+    
